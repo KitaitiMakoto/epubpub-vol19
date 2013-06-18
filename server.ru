@@ -31,12 +31,12 @@ EOH
       files.each do |file|
         response.body << <<EOH
 <li>
-  <a href="/#{u file.basename}">#{h file.basename}</a>
   <ul class="readers">
-    <li>[bib]</li>
-    <li>[<a href="/readium.html##{u file.basename}">SimpleReadium</a>]</li>
-    <li>[<a href="/epubjs.html##{u file.basename}">epub.js</a>]</li>
+    <li>[BiB/i]</li>
+    <li>[<a href="/readium.html##{u file.basename}" target="_blank">SimpleReadium</a>]</li>
+    <li>[<a href="/epubjs.html##{u file.basename}" target="_blank">epub.js</a>]</li>
   </ul>
+  <a href="/#{u file.basename}">#{h file.basename}</a>
 </li>
 EOH
       end

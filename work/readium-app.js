@@ -6,7 +6,7 @@ var viewerPreferences = {
     tocVisible: false,
     currentTheme: "default"
 };
-var epubName = encodeURI(location.hash.slice(1));
+var epubName = location.hash.slice(1);
 var epubViewer;
 $.ajax({
     url: "/" + epubName + "/META-INF/container.xml",
@@ -25,18 +25,12 @@ $.ajax({
                 var epubViewer = new SimpleReadiumJs(
                     $elementToBindTo[0], viewerPreferences, rootfileUriParts.join("/") + "/", xhr.responseText, "lazy"
                 );
+
+                epubViewer.on("keydown-left", function(event) {epubViewer.previousPage(function() {});})
+                epubViewer.on("keydown-right", function(event) {epubViewer.nextPage(function() {})});
+
                 epubViewer.render();
                 epubViewer.showSpineItem(0, function() {});
-
-                $elementToBindTo
-                    .find("iframe:first")
-                    .attr("scrolling", "yes")
-                    .on("load", function(event) {
-                        $(event.target).contents()
-                            .find("html:first")
-                            .css("height", "")
-                            .css("width", "100%");
-                    });
             }
         });
     }
