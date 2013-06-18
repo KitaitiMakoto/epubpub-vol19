@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div id="reader">
+</div>
+<script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="modernizr-2.6.2.min.js"></script>
+<script type="text/javascript" src="epub.js"></script>
+<script type="text/javascript" async src="hooks.js"></script>
+<script type="text/javascript" src="reader.js"></script>
+<script type="text/javascript" src="fileStorage.min.js"></script>
+<script type="text/javascript">
+  var filename = location.hash.slice(1);
+  var book = new EPUBJS.Book("reader");
+  book.online = true;
+  book.start("./" + filename);
+</script>
